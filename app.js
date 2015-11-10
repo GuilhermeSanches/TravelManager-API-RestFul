@@ -37,6 +37,15 @@ app.use(cors());
 var SECRET = 'vibevendasehfodapracrlaee';
 app.use('/login', expressJwt({secret: SECRET}));
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+
 passport.use(new FacebookStrategy({
     clientID: "435532409982894",
     clientSecret: "086f3074dbae7efd35a25271876004a9",
