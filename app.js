@@ -43,9 +43,15 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://web-travelmanager.rhcloud.com/auth/facebook/callback",
     enableProof: false
   },
-  function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return done(err, user);
+ function(accessToken, refreshToken, profile, done) {
+    // asynchronous verification, for effect...
+    process.nextTick(function () {
+      
+      // To keep the example simple, the user's Facebook profile is returned to
+      // represent the logged-in user.  In a typical application, you would want
+      // to associate the Facebook account with a user record in your database,
+      // and return that user instead.
+      return done(null, profile);
     });
   }
 ));
