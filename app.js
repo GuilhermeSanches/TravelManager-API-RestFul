@@ -57,23 +57,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(
-//    connection(mysql,{
-//        host: process.env.OPENSHIFT_MYSQL_DB_HOST,
-//        user: 'admintcHGzPm',
-//        password : 'lyJnKihB1AV1',        
-//        database:'my'
-//    },'request')
-//);
-
 app.use(
     connection(mysql,{
-        host: 'localhost',
-        user: 'root',
-        password : '',        
+        host: process.env.OPENSHIFT_MYSQL_DB_HOST,
+        user: 'adminDu2UgjS',
+        password : '93rsAGszR9bF',        
         database:'api'
     },'request')
 );
+
+//app.use(
+//    connection(mysql,{
+//        host: 'localhost',
+//        user: 'root',
+//        password : '',        
+//        database:'api'
+//    },'request')
+//);
 
 console.log(process.env.OPENSHIFT_MYSQL_DB_HOST);
 app.use('/', index);
