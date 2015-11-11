@@ -49,7 +49,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new FacebookStrategy({
     clientID: "435532409982894",
     clientSecret: "086f3074dbae7efd35a25271876004a9",
-    callbackURL: "http://web-travelmanager.rhcloud.com/auth/facebook/callback",
+    callbackURL: "http://guisanches.com.br/#/auth/facebook/callback",
     enableProof: false
   },
  function(accessToken, refreshToken, profile, done) {
@@ -98,13 +98,12 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.all("/*", function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
-    return next();
+app.all('*', function(req, res, next) {
+       res.header("Access-Control-Allow-Origin", "*");
+       res.header("Access-Control-Allow-Headers", "X-Requested-With");
+       res.header('Access-Control-Allow-Headers', 'Content-Type');
+       next();
 });
-
 
 app.get('/auth/facebook',
   passport.authenticate('facebook'),

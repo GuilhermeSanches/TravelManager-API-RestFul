@@ -1,0 +1,34 @@
+<div ng-include="'views/menu-top.html'" ng-controller="ReadCtrlTravel"></div>
+<div class="row">
+	<h2 class="text-center"><u>Viagens</u></h2>
+</div>
+
+<br/>
+<div class="row">
+<div class="col-md-12">
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<td>ID</td>
+			<td>Pais</td>
+			<td></td>
+			<td></td>
+
+		</tr>
+	</thead>
+	
+	<tbody>       
+		<tr ng-repeat="viagem in viagens | orderBy: '+pais'">
+		<td>{{viagem.id_travel}}</td>
+		<td>{{viagem.pais}}</td>	
+		<td><a href="#/edit_travel/{{viagem.id_travel}}" class="btn btn-info btn-block">Editar</a></td>
+		<td><button ng-click="delet_travel(viagem.id_travel)" class="btn btn-danger btn-block">Deletar</button></td>
+		</tr>
+		<tr ng-show="notFound" class="text-center">
+			<td colspan="4">Não tem Viagens</td>
+		</tr>
+		</tr>
+	</tbody>
+</table>	
+</div>
+</div>

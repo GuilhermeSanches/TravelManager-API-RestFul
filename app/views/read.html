@@ -1,0 +1,42 @@
+<div ng-include="'views/index-top.html'"></div>
+<div class="col-md-12">
+<div id="header">
+
+</div>
+<div class="row">
+</div>
+<div class="row">
+<a href="#/create" class="btn btn-primary">Cadastrar</a>
+<a href="#/viagens" class="btn btn-primary">Viagens</a>
+<a type="button"  href="#/message/1" class="btn btn-primary"  data-target="#myModal">Login Invalido teste</a>
+<a type="button" href="#/message/2" class="btn btn-primary"   data-target="#myModal">Erro 2</a>
+</div>
+<br/>
+<div class="row">
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<td>ID</td>
+			<td>Título</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in lembretes">
+		<td>{{item.id}}</td>
+		<td>{{item.titulo}}</td>
+		<td><a href="#/edit/{{item.id}}" class="btn btn-info btn-block">Editar</a></td>
+		<td><button ng-click="deletar(item.id)" class="btn btn-danger btn-block">Deletar</button></td>
+		</tr>
+		<tr ng-show="notFound" class="text-center">
+			<td colspan="4">Não tem Viagens</td>
+		</tr>
+	</tbody>
+</table>
+	<select>
+	    <option value="{{nome.id}}" ng-repeat="nome in lembretes">{{nome.titulo}}</option>
+	</select>
+</div>
+
+</div>

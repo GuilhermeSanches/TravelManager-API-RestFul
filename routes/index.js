@@ -40,7 +40,7 @@ app.route('/lembretes')
 
 /*GET VIAGENS*/
 app.route('/viagens')
-    .get(Viagens.getViagens);
+    .get(ensureAuthorized, Viagens.getViagens);
 
 app.route('/viagem/:id')
     .get(Viagens.profileViagem)
