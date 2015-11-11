@@ -35,8 +35,8 @@ app.route('/signup')
 
 /* GET home page. */
 app.route('/lembretes')
-	.get(Lembretes.read)
-	.post(Lembretes.create);
+	.get(ensureAuthorized, Lembretes.read)
+	.post(ensureAuthorized, Lembretes.create);
 
 /*GET VIAGENS*/
 app.route('/viagens')
@@ -55,6 +55,7 @@ app.route('/lembrete/:id')
 	.get(Lembretes.profile)
 	.put(Lembretes.update)
 	.delete(Lembretes.delete);
+
 
 
 

@@ -8,7 +8,6 @@ exports.getViagens = function(req, res) {
 }
 
 
-
 exports.updateViagem = function(req, res) {
  	var data = req.body,
  		id 	   = req.params.id;
