@@ -49,7 +49,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new FacebookStrategy({
     clientID: "435532409982894",
     clientSecret: "8a91322c93cbe9229aa47f575065b74c",
-    callbackURL: "http://web-travelmanager.rhcloud.com/auth/facebook/callback",
+  //  callbackURL: "http://web-travelmanager.rhcloud.com/auth/facebook/callback",
     enableProof: false
   },
  function(accessToken, refreshToken, profile, done) {
@@ -121,7 +121,7 @@ app.get('/auth/facebook/callback',
      res.header("Access-Control-Allow-Origin", "*");
        res.header("Access-Control-Allow-Headers", "X-Requested-With");
        res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.redirect('/viagens');
+    res.redirect('http://www.guisanches.com.br/#/viagens');
   });
 
 if (app.get('env') === 'development') {
