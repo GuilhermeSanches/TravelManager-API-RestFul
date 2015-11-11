@@ -48,7 +48,7 @@ passport.deserializeUser(function(user, done) {
 
 passport.use(new FacebookStrategy({
     clientID: "435532409982894",
-    clientSecret: "086f3074dbae7efd35a25271876004a9",
+    clientSecret: "8a91322c93cbe9229aa47f575065b74c",
     callbackURL: "http://web-travelmanager.rhcloud.com/auth/facebook/callback",
     enableProof: false
   },
