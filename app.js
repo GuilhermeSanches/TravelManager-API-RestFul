@@ -108,6 +108,9 @@ app.all('*', function(req, res, next) {
 app.get('/auth/facebook',
   passport.authenticate('facebook'),
   function(req, res){
+      req.header('Access-Control-Allow-Origin: *'); 
+      res.header('Access-Control-Allow-Origin: *'); 
+        next();
     // The request will be redirected to Facebook for authentication, so this
     // function will not be called.
   });
