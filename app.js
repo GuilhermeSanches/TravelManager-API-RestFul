@@ -49,7 +49,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new FacebookStrategy({
     clientID: "435532409982894",
     clientSecret: "086f3074dbae7efd35a25271876004a9",
-    callbackURL: "http://guisanches.com.br/#/auth/facebook/callback",
+    callbackURL: "http://web-travelmanager.rhcloud.com/auth/facebook/callback",
     enableProof: false
   },
  function(accessToken, refreshToken, profile, done) {
