@@ -26,7 +26,7 @@ exports.profile = function(req, res) {
  	var id = req.params.id;
 
 	req.getConnection(function(err,connection){
-		connection.query('SELECT * FROM lembretes WHERE id = ?',[id],function(err,result){
+		connection.query('SELECT * FROM lembretes WHERE id_lembrete = ?',[id],function(err,result){
 			if(err) return res.status(400).json(err);
 			return res.status(200).json(result[0]);
 		});
@@ -38,7 +38,7 @@ exports.update = function(req, res) {
  		id 	   = req.params.id;
 
 	req.getConnection(function(err,connection){
-		connection.query('UPDATE lembretes SET ? WHERE id = ? ',[data, id],function(err,result){
+		connection.query('UPDATE lembretes SET ? WHERE id_lembrete = ? ',[data, id],function(err,result){
 			if(err) return res.status(400).json(err);
 			return res.status(200).json(result);
 		});
@@ -49,7 +49,7 @@ exports.delete = function(req, res) {
  	var id = req.params.id;
 
 	req.getConnection(function(err,connection){
-		connection.query('DELETE FROM lembretes WHERE id = ? ',[id],function(err,result){
+		connection.query('DELETE FROM lembretes WHERE id_lembrete = ? ',[id],function(err,result){
 			if(err) return res.status(400).json(err);
 
 			return res.status(200).json(result);

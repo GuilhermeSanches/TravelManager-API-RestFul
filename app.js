@@ -16,23 +16,11 @@ var expressJwt = require('express-jwt');
 var cors = require('cors');
 
 
-
-// This is where all the magic happens!
 app.engine('html', swig.renderFile);
-
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
-
-// Swig will cache templates for you, but you can disable
-// that and use Express's caching instead, if you like:
 app.set('view cache', false);
-// To disable Swig's cache, do the following:
 swig.setDefaults({ cache: false });
-// NOTE: You should always cache templates in a production environment.
-// Don't leave both of these to `false` in production!
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(cors());
 var SECRET = 'vibevendasehfodapracrlaee';
@@ -44,6 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(
     connection(mysql,{
         host: process.env.OPENSHIFT_MYSQL_DB_HOST,
@@ -72,7 +61,6 @@ app.use(function(req, res, next) {
 
 
 
-
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
@@ -83,8 +71,7 @@ if (app.get('env') === 'development') {
     });
 }
 
-// production error handler
-// no stacktraces leaked to user
+
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.json({
