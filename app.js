@@ -14,15 +14,8 @@ var app = express();
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var cors = require('cors');
-var FacebookStrategy = require('passport-facebook').Strategy;
-
-var configDB = require('./config/database.js');
-var mongoose = require('mongoose');
 
 
-mongoose.connect(configDB.url);
-
-require('./config/passport')(passport);
 
 // This is where all the magic happens!
 app.engine('html', swig.renderFile);
@@ -78,14 +71,6 @@ app.use(function(req, res, next) {
 });
 
 
-
-app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-
-   app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect : '/viagens',
-            failureRedirect : '/'
-        }));
 
 
 if (app.get('env') === 'development') {
