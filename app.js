@@ -14,7 +14,15 @@ var app = express();
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var cors = require('cors');
-var FacebookStrategy = require('passport-facebook').Strategy
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+var configDB = require('./config/database.js');
+var mongoose = require('mongoose');
+
+
+mongoose.connect(configDB.url);
+
+require('./config/passport')(passport);
 
 // This is where all the magic happens!
 app.engine('html', swig.renderFile);
@@ -36,35 +44,6 @@ app.use(logger('dev'));
 app.use(cors());
 var SECRET = 'vibevendasehfodapracrlaee';
 app.use('/login', expressJwt({secret: SECRET}));
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
-
-
-passport.use(new FacebookStrategy({
-    clientID: "435532409982894",
-    clientSecret: "8a91322c93cbe9229aa47f575065b74c",
-    callbackURL: "http://guisanches.com.br/#/viagens",
-    enableProof: false
-  },
- function(accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
-      
-      // To keep the example simple, the user's Facebook profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Facebook account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
-    });
-  }
-));
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.set('jwtTokenSecret', 'vibevendasehfodapracrlaee');
@@ -99,19 +78,15 @@ app.use(function(req, res, next) {
 });
 
 
-app.get('/auth/facebook',
-  passport.authenticate('facebook'),
-  function(req, res){     
-        next();
-    // The request will be redirected to Facebook for authentication, so this
-    // function will not be called.
-  });
 
-app.get('/auth/facebook/callback', 
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {   
-    res.redirect('http://www.guisanches.com.br/#/viagens');
-  });
+app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+   app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : '/viagens',
+            failureRedirect : '/'
+        }));
+
 
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
