@@ -98,18 +98,10 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.all('*', function(req, res, next) {
-       res.header("Access-Control-Allow-Origin", "*");
-       res.header("Access-Control-Allow-Headers", "X-Requested-With");
-       res.header('Access-Control-Allow-Headers', 'Content-Type');
-       next();
-});
 
 app.get('/auth/facebook',
   passport.authenticate('facebook'),
-  function(req, res){
-      req.header('Access-Control-Allow-Origin: *'); 
-      res.header('Access-Control-Allow-Origin: *'); 
+  function(req, res){     
         next();
     // The request will be redirected to Facebook for authentication, so this
     // function will not be called.
@@ -117,10 +109,7 @@ app.get('/auth/facebook',
 
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-     res.header("Access-Control-Allow-Origin", "*");
-       res.header("Access-Control-Allow-Headers", "X-Requested-With");
-       res.header('Access-Control-Allow-Headers', 'Content-Type');
+  function(req, res) {   
     res.redirect('http://www.guisanches.com.br/#/viagens');
   });
 
@@ -144,10 +133,5 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 module.exports = app;
