@@ -5,7 +5,7 @@ exports.read = function(req, res) {
 	req.getConnection(function(err,connection){
 		connection.query('SELECT * FROM lembretes l join usuarios u on l.id_user = u.id WHERE u.token = ?',[req.token],function(err,result){
 			if(err) return res.status(400).json();
-			return res.status(200).json(JSON.stringify(result));
+			return res.status(200).json(result);
 		});
 	});
 }
