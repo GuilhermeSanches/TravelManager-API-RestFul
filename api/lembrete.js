@@ -15,7 +15,7 @@ exports.create = function(req, res) {
     console.log(data);
     
     req.getConnection(function(err,connection){
-		connection.query('SELECT id FROM usuarios WHERE token = ?',[data.token],function(err,result){
+		connection.query('SELECT * FROM usuarios WHERE token = ?',[data.token],function(err,result){
             if(err) return res.status(404).json(err);
 			   var iduser = result.id;
             
