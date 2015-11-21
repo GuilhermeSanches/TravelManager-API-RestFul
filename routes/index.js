@@ -7,6 +7,7 @@ var Viagens = getmodule('api/viagem');
 var Messages = getmodule('api/messages');
 var SignIn = getmodule('api/signin');
 var SignUp = getmodule('api/signup');
+var Lancamentos = getmodule('api/lancamentos');
 
 
 function ensureAuthorized(req, res, next) {
@@ -33,7 +34,10 @@ app.route('/signup')
     .post(SignUp.signUp);
  
 
-/* GET home page. */
+app.route('/lembrete/:id/lancamentos')
+    .get(ensureAuthorized, Lancamentos.read);
+
+
 app.route('/lembretes')
 	.get(ensureAuthorized, Lembretes.read)
 	.post(ensureAuthorized, Lembretes.create);

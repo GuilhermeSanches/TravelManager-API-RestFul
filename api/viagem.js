@@ -1,4 +1,4 @@
-exports.getViagens = function(req, res) {
+exports.getViagens = function(req, res) {   
 	req.getConnection(function(err,connection){
 		connection.query('SELECT * FROM viagens v join usuarios u on v.id_user = u.id where u.token = ?',[req.token],function(err,result){
 			if(err) return res.status(400).json({data:"Nenhum dado encontrado para este usuário"});
