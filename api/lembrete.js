@@ -17,13 +17,13 @@ exports.create = function(req, res) {
     req.getConnection(function(err,connection){
 		connection.query('SELECT * FROM usuarios WHERE token = ?',[data.token],function(err,result){
             if(err) return res.status(404).json(err);
-			   var iduser = result.id;
+			   var iduser = result[0].id;
             
             
         req.getConnection(function(err,connection){
 		connection.query('INSERT INTO lembretes SET ?',[data],function(err,result){
 			if(err) return res.status(400).json(err);
-                var idLembrete = result.id_lembrete;
+                var idLembrete = result.insertId;
 
 			
             
