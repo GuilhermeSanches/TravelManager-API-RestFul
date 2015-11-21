@@ -17,22 +17,22 @@ exports.create = function(req, res) {
     req.getConnection(function(err,connection){
 		connection.query('SELECT id FROM usuarios WHERE token = ?',[data.token],function(err,result){		
 			var iduser = result.id;
+                 })});
             
         req.getConnection(function(err,connection){
 		connection.query('INSERT INTO lembretes SET ?',[data],function(err,result){
 			if(err) return res.status(400).json(err);
             var idLembrete = result.id_lembrete;
+            	 })});
 			
             
                 req.getConnection(function(err,connection){
 		connection.query("UPDATE lembretes SET id_user = ? WHERE id_lembrete = ? ",[iduser, idLembrete],function(err,result){
 			if(err) return res.status(400).json(err);	                                                   
-			return res.status(200).json({data: 'sucesso'});
-            		});
-           });                        
-		});
-	});
-        })})}
+			return res.status(200).json({data: 'sucesso'});            
+                 })});
+
+}
     
     
 
