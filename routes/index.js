@@ -28,7 +28,7 @@ var bearerToken;
 
 
 app.route('/categorias')
-    .get(Categorias.read);
+    .get(ensureAuthorized, Categorias.read);
 
 app.route('/authenticate')
     .post(SignIn.authenticate);
@@ -52,9 +52,9 @@ app.route('/viagens')
 
     
 app.route('/viagem/:id')
-	.get(Viagens.profile)
-	.put(Viagens.update)
-	.delete(Viagens.delete);
+	.get(ensureAuthorized, Viagens.profile)
+	.put(ensureAuthorized, Viagens.update)
+	.delete(ensureAuthorized, Viagens.delete);
 
 
 app.route('/message/:id').get(Messages.getMessages);
