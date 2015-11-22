@@ -21,6 +21,7 @@ var bearerToken;
         req.token = bearer;        
         next();
     } else {
+        
         res.send(403);
     }
 };
