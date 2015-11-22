@@ -2,7 +2,6 @@ var express = require('express');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var app = express.Router();
-var Lembretes = getmodule('api/lembrete');
 var Viagens = getmodule('api/viagem');
 var Messages = getmodule('api/messages');
 var SignIn = getmodule('api/signin');
@@ -34,37 +33,26 @@ app.route('/signup')
     .post(SignUp.signUp);
  
 
-app.route('/lembrete/:id/lancamentos')
+app.route('/viagem/:id/lancamentos')
     .get(ensureAuthorized, Lancamentos.read)
     .post(ensureAuthorized, Lancamentos.create);
 
-app.route('/lembrete/:idViagem/lancamento/:id')
+app.route('/viagem/:idViagem/lancamento/:id')
     .delete(ensureAuthorized, Lancamentos.delete);
 
 
-app.route('/lembretes')
-	.get(ensureAuthorized, Lembretes.read)
-	.post(ensureAuthorized, Lembretes.create);
-
-/*GET VIAGENS*/
 app.route('/viagens')
-    .get(ensureAuthorized, Viagens.getViagens);
+	.get(ensureAuthorized, Viagens.read)
+	.post(ensureAuthorized, Viagens.create);
 
-app.route('/viagem/:id')
-    .get(Viagens.profileViagem)
-    .put(ensureAuthorized, Viagens.updateViagem)
-    .delete(Viagens.deleteViagem);
     
+app.route('/viagem/:id')
+	.get(Viagens.profile)
+	.put(Viagens.update)
+	.delete(Viagens.delete);
+
 
 app.route('/message/:id').get(Messages.getMessages);
-
-
-app.route('/lembrete/:id')
-	.get(Lembretes.profile)
-	.put(Lembretes.update)
-	.delete(Lembretes.delete);
-
-
 
 
 
