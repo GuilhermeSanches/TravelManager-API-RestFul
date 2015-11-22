@@ -22,3 +22,23 @@ exports.delete = function(req, res) {
 	});
 }
  
+exports.create = function(req, res) {
+ 	var data = req.body;
+    var idViagem = req.params.id;
+
+        req.getConnection(function(err,connection){
+		connection.query('INSERT INTO despesas SET ?',[data],function(err,result){
+			if(err) return res.status(400).json(err);
+                var idLancamento = result.insertId;
+
+			
+            
+        req.getConnection(function(err,connection){
+connection.query("UPDATE despesas SET id_viagem = ? WHERE id_lancamento = ? ",[idViagem, idLancamento],function(err,result){
+			if(err) return res.status(404).json(err);	                                                   
+			     return res.status(200).json({data: 'sucesso'});            
+                })});
+            })});
+   
+}
+    

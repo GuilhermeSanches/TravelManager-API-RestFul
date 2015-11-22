@@ -35,7 +35,8 @@ app.route('/signup')
  
 
 app.route('/lembrete/:id/lancamentos')
-    .get(ensureAuthorized, Lancamentos.read);
+    .get(ensureAuthorized, Lancamentos.read)
+    .get(ensureAuthorized, Lancamentos.create);
 
 app.route('/lembrete/:idViagem/lancamento/:id')
     .delete(ensureAuthorized, Lancamentos.delete);
