@@ -7,6 +7,7 @@ var Messages = getmodule('api/messages');
 var SignIn = getmodule('api/signin');
 var SignUp = getmodule('api/signup');
 var Lancamentos = getmodule('api/lancamentos');
+var Categorias = getmodule('api/categorias');
 
 
 function ensureAuthorized(req, res, next) {
@@ -24,6 +25,9 @@ var bearerToken;
     }
 };
 
+
+app.route('/categorias')
+    .get(Categorias.read);
 
 app.route('/authenticate')
     .post(SignIn.authenticate);
