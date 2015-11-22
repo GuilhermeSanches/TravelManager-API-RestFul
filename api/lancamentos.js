@@ -34,7 +34,7 @@ exports.create = function(req, res) {
 			
             
         req.getConnection(function(err,connection){
-connection.query("UPDATE despesas SET id_viagem = ? WHERE id_lancamento = ? ",[idViagem, idLancamento],function(err,result){
+connection.query("UPDATE despesas SET id_viagem = ? WHERE id = ? ",[idViagem, idLancamento],function(err,result){
 			if(err) return res.status(404).json(err);	                                                   
 			     return res.status(200).json({data: 'sucesso'});            
                 })});
