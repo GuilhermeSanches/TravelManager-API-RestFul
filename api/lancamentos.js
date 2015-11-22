@@ -10,7 +10,7 @@ var id = req.params.id;
 }
 
 
-exports.read = function(req, res) {
+exports.profile = function(req, res) {
 var id = req.params.id;
     
 	req.getConnection(function(err,connection){
