@@ -10,6 +10,19 @@ var id = req.params.id;
 }
 
 
+exports.read = function(req, res) {
+var id = req.params.id;
+    
+	req.getConnection(function(err,connection){
+		connection.query('SELECT l.id,    l.descricao, l.valor, l.id_viagem, c.id, l.data FROM despesas l join categoria c on c.id = l.id_categoria WHERE l.id = ?',[id],function(err,result){
+			if(err) return res.status(400).json();
+			return res.status(200).json(result);
+		});
+	});
+}
+
+
+
 exports.delete = function(req, res) {
  	var id = req.params.id;
 

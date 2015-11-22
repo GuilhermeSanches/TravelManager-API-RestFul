@@ -43,7 +43,8 @@ app.route('/viagem/:id/lancamentos')
     .post(ensureAuthorized, Lancamentos.create);
 
 app.route('/viagem/:idViagem/lancamento/:id')
-    .delete(ensureAuthorized, Lancamentos.delete);
+    .delete(ensureAuthorized, Lancamentos.delete)
+    .get(ensureAuthorized, Lancamentos.profile);
 
 
 app.route('/viagens')
