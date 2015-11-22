@@ -34,6 +34,18 @@ exports.delete = function(req, res) {
 		});
 	});
 }
+
+exports.update = function(req, res) {
+ 	var data = req.body,
+ 		id 	   = req.params.id;
+
+	req.getConnection(function(err,connection){
+		connection.query('UPDATE despesas SET ? WHERE id = ? ',[data, id],function(err,result){
+			if(err) return res.status(400).json(err);
+			return res.status(200).json(result);
+		});
+	});
+}
  
 exports.create = function(req, res) {
  	var data = req.body;

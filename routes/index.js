@@ -44,7 +44,9 @@ app.route('/viagem/:id/lancamentos')
 
 app.route('/viagem/:idViagem/lancamento/:id')
     .delete(ensureAuthorized, Lancamentos.delete)
-    .get(ensureAuthorized, Lancamentos.profile);
+    .get(ensureAuthorized, Lancamentos.profile)
+    .put(ensureAuthorized, Lancamentos.update);
+    
 
 
 app.route('/viagens')
