@@ -3,7 +3,7 @@ exports.read = function(req, res) {
 
     
 	req.getConnection(function(err,connection){
-		connection.query('SELECT l.titulo, l.dataInicio, l.dataTermino, l.vPrevisto, sum( d.valor)as vGasto , l.status, l.id_user, l.token FROM lembretes l JOIN usuarios u ON l.id_user JOIN despesas d ON d.id_viagem = l.id_lembrete WHERE l.token = ?',[req.token],function(err,result){
+		connection.query('SELECT l.titulo, l.dataInicio, l.dataTermino, l.vPrevisto, sum( d.valor)as vGasto , l.status, l.id_user, l.token FROM lembretes l JOIN usuarios u ON l.id_user LEFT JOIN despesas d ON d.id_viagem = l.id_lembrete WHERE l.token = ?',[req.token],function(err,result){
 			if(err) return res.status(400).json();
 			return res.status(200).json(result);
 		});
