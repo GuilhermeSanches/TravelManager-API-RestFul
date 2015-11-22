@@ -8,6 +8,7 @@ var SignIn = getmodule('api/signin');
 var SignUp = getmodule('api/signup');
 var Lancamentos = getmodule('api/lancamentos');
 var Categorias = getmodule('api/categorias');
+var Relatorios = getmodule('api/relatorios');
 
 
 function ensureAuthorized(req, res, next) {
@@ -28,7 +29,10 @@ var bearerToken;
 
 
 app.route('/categorias')
-    .get(ensureAuthorized, Categorias.read);
+    .get(ensureAuthorized, Categorias.read
+         
+app.route('/relatorios/:id')
+    .get(ensureAuthorized, Relatorios.read);         
 
 app.route('/authenticate')
     .post(SignIn.authenticate);
