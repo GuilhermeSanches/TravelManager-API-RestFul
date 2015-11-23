@@ -10,10 +10,10 @@ exports.signUp = function(req, res) {
         return res.send(401);
     }    
     req.getConnection(function(err,connection){
-		connection.query('SELECT * FROM usuarios WHERE user = ? and pass = ?',[username, password],
+		connection.query('SELECT * FROM usuarios WHERE user = ?',[username],
        function(err, result){            
 			if(err) return res.status(400).json(err+username+password);
-            if(result[0]) return res.status(404).json({data: "User already exists!"});
+            if(result[0]) return res.status(404).json({data: "Usuário já existe!"});
 
             
     req.getConnection(function(err, connection){
