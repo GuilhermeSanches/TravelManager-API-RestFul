@@ -13,7 +13,7 @@ exports.signUp = function(req, res) {
 		connection.query('SELECT * FROM usuarios WHERE user = ? and pass = ?',[username, password],
        function(err, result){            
 			if(err) return res.status(400).json(err+username+password);
-            if(result[0]) return res.status(200).json({data: "User already exists!"});
+            if(result[0]) return res.status(404).json({data: "User already exists!"});
 
             
     req.getConnection(function(err, connection){
