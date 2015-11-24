@@ -11,3 +11,18 @@ exports.read = function(req, res) {
 }
 
 
+
+exports.readRelTot = function(req, res) {
+
+	
+    
+	req.getConnection(function(err,connection){
+		connection.query('select v.titulo, sum(d.valor) as valor from viagens v join despesas d on d.id_viagem = v.id_viagem where v.token = ? group by 1',[req.token],function(err,result){
+			if(err) return res.status(400).json();
+			return res.status(200).json(result);
+		});
+	});
+}
+
+
+

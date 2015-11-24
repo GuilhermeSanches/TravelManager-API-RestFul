@@ -32,7 +32,10 @@ app.route('/categorias')
     .get(ensureAuthorized, Categorias.read);
          
 app.route('/relatorios/:id')
-    .get(ensureAuthorized, Relatorios.read);         
+    .get(ensureAuthorized, Relatorios.read);
+
+app.route('/relatorios/total/:token')
+    .get(ensureAuthorized, Relatorios.readRelTot);
 
 app.route('/authenticate')
     .post(SignIn.authenticate);
